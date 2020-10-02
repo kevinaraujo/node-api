@@ -5,11 +5,12 @@
   "author": "Kevin Araújo <kfa_34@hotmail.com>",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon index.js",
+    "start": "nodemon src/index.js",
     "test": "jest"
   },
   "dependencies": {
     "consign": "^0.1.6",
+    "ejs": "^2.6.1",
     "express": "^4.16.4",
     "mongoose": "^5.4.10"
   },
