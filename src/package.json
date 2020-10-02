@@ -1,0 +1,21 @@
+{
+  "name": "node_api",
+  "version": "1.0.0",
+  "description": "Node api to test.",
+  "author": "Kevin Araújo <kfa_34@hotmail.com>",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "jest"
+  },
+  "dependencies": {
+    "consign": "^0.1.6",
+    "express": "^4.16.4",
+    "mongoose": "^5.4.10"
+  },
+  "devDependencies": {
+    "jest": "^26.4.2",
+    "nodemon": "^1.19.4",
+    "supertest": "^5.0.0"
+  }
+}

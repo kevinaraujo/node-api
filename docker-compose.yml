@@ -5,6 +5,7 @@ services:
     build: .
     volumes: 
       - .:/usr/app
-      - /usr/app/node_modules
+      - ./src:/usr/app/src
+      - /usr/app/src/node_modules
     ports:
       - "3000:3000"
