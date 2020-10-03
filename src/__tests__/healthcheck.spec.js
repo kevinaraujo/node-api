@@ -5,12 +5,12 @@ var app = customExpress()
 
 describe('Tests healthcheck endpoint.', () => {
 
-    it("Tests the success response", async () => {
+    it("Tests the success response of api health.", async () => {
         
-        const response = await supertest(app).get('/healthcheck')
+        const res = await supertest(app).get('/healthcheck')
         
-        expect(response.status).toBe(200)
-        expect(response.body.message).toBe('success')
+        expect(res.status).toBe(200)
+        expect(res.body).toEqual({ message: 'success' })
     })
 
 })

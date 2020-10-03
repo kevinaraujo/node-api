@@ -3,13 +3,51 @@ const customExpress = require('../config/customExpress')
 
 var app = customExpress()
 
-
 describe('Tests client endpoints.', () => {
 
-    it('Tests a client creation.', async () => {
+    it('Tests a client foun by its id.', async () => {
+        const res = await supertest(app).get('/client/1')
 
-        const response = await supertest(app).put('/client')
+        expect(res.status).toBe(200)
+        expect(res.body).toEqual({
+            id: 1,
+            name: 'Marcelo Silva',
+            documentation: 12345678,
+            gender: 'male',
+            birthday: '1980/12/10'
+        })
+    })
 
-        expect(response.status).toBe(200)
+    it('Tests a client not foun by its id.', async () => {
+        const res = await supertest(app).get('/client/20')
+
+        expect(res.status).toBe(404)
+        expect(res.body).toEqual({
+            error: 'Client not found.'
+        })
+    })
+
+    it('Tests a client found by its documentation.', async () => {
+
+        const res = await supertest(app).get('/client/get_by_documentation/12345678')
+
+        expect(res.status).toBe(200)
+        expect(res.body).toEqual({
+            id: 1,
+            name: 'Marcelo Silva',
+            documentation: 12345678,
+            gender: 'male',
+            birthday: '1980/12/10'
+        })
+    })
+
+    it('Tests a client not found its documentation.', async () => {
+        
+        const res = await supertest(app).get('/client/get_by_documentation/1232010')
+
+        expect(res.status).toBe(404)    
+        expect(res.body).toEqual({
+            error: 'Client not found.'
+        })
     })
 })

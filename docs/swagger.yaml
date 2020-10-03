@@ -1,0 +1,102 @@
+swagger: '2.0'
+info:
+  title: Node Api
+  description: Descriptions of Node api endpoints.
+  contact: {}
+  version: "1.0"
+paths:
+  '/healthcheck':
+    post:
+      summary: Test the api health.
+      description: Test the api health.
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        200:
+          description: The api is on.
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: success
+        500:
+          description: Intern error in api.
+          
+  '/client/{id}':
+    get:
+      summary: Get a client by id.
+      description: Get a client by id.
+      produces:
+      - application/json
+      consumes:
+      - application/json
+      parameters:
+      - in: path
+        name: id
+        required: true
+        type: integer
+        description: ID from database.
+      responses:
+        200:
+          description: Client found.
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+                example: Marcelo Silva
+              gender:
+                type: string
+                example: male
+              documentation:
+                type: string
+                example: 12345678
+              birthday:
+                type: string
+                example: 1980/12/10
+        404:
+          description: Cannot request the endpoint with empty parameter or client not found.
+        500:
+          description: Intern error in api.
+          
+  '/client/get_by_documentation/{documentation}':
+    get:
+      summary: Get a client by documentarion (cpf or cpf).
+      description: Get a client by documentarion (cpf or cpf).
+      produces:
+      - application/json
+      consumes:
+      - application/json
+      parameters:
+      - in: path
+        name: documentation
+        required: true
+        type: integer
+        description: cpf or cnpj
+      responses:
+        200:
+          description: Client found.
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+                example: Marcelo Silva
+              gender:
+                type: string
+                example: male
+              documentation:
+                type: string
+                example: 12345678
+              birthday:
+                type: string
+                example: 1980/12/10
+        404:
+          description: Cannot request the endpoint with empty parameter or client not found.
+        500:
+          description: Intern error in api.
+   
+   
