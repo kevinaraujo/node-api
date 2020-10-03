@@ -5,8 +5,8 @@
   "author": "Kevin Araújo <kfa_34@hotmail.com>",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon src/index.js",
-    "test": "jest"
+    "start": "nodemon index.js",
+    "test": "jest --verbose"
   },
   "dependencies": {
     "consign": "^0.1.6",

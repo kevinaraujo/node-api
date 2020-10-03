@@ -4,8 +4,6 @@ services:
     container_name: node_app 
     build: .
     volumes: 
-      - .:/usr/app
-      - ./src:/usr/app/src
-      - /usr/app/src/node_modules
+      - ./src:/usr/app
     ports:
       - "3000:3000"
