@@ -6,7 +6,7 @@ var app = customExpress()
 
 describe('Tests client endpoints.', () => {
 
-    it('Tests a creation of a client.', async () => {
+    it('Tests a client creation.', async () => {
 
         const response = await supertest(app).put('/client')
 

@@ -6,7 +6,7 @@
   "main": "server.js",
   "scripts": {
     "start": "nodemon index.js",
-    "test": "jest --verbose"
+    "test": "jest --verbose --silent"
   },
   "dependencies": {
     "consign": "^0.1.6",
