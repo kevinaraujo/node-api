@@ -1,9 +1,41 @@
-version: '2'
+version: "3.7"
+
 services:
-  node_app:
-    container_name: node_app 
+
+  node-app:
+    container_name: node-app 
     build: .
     volumes: 
       - ./src:/usr/app
     ports:
       - "3000:3000"
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo
+    restart: always
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    volumes:
+      - ./db_data:/data/db
+    networks:
+      - node-bridge
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: root
+    networks:
+      - node-bridge
+networks:
+    node-bridge:
+      driver: bridge
+

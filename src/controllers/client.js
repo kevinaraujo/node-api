@@ -1,5 +1,34 @@
+const ClientModel = require('../models/Client')
+
 module.exports = app => {
-    
+
+    app.get('/clients', (req, res) => {
+
+        const data = [{
+            id: 1,
+            name: 'Marcelo Silva',
+            documentation: 12345678,
+            gender: 'male',
+            birthday: '1970/12/10'
+        },
+        {
+            id: 2,
+            name: 'Patrícia Silva',
+            documentation: 102030,
+            gender: 'female',
+            birthday: '1980/05/09'
+        },
+        {
+            id: 3,
+            name: 'Juliano Brava',
+            documentation: 90608070,
+            gender: 'male',
+            birthday: '1972/09/16'
+        }]
+        
+        res.json(data)
+    })
+
     app.get('/client/:id', (req, res) => {
 
         if (req.params.id != 1) {
@@ -13,7 +42,7 @@ module.exports = app => {
             name: 'Marcelo Silva',
             documentation: 12345678,
             gender: 'male',
-            birthday: '1980/12/10'
+            birthday: '1970/12/10'
         })
     })
 
