@@ -45,15 +45,18 @@ paths:
           schema:
             type: object
             properties:
+              id:
+                type: string
+                example: 1
               name:
                 type: string
                 example: Marcelo Silva
-              gender:
-                type: string
-                example: male
               documentation:
                 type: string
                 example: 12345678
+              gender:
+                type: string
+                example: male
               birthday:
                 type: string
                 example: 1980/12/10
@@ -82,20 +85,54 @@ paths:
           schema:
             type: object
             properties:
+              id:
+                type: string
+                example: 1
               name:
                 type: string
                 example: Marcelo Silva
-              gender:
-                type: string
-                example: male
               documentation:
                 type: string
                 example: 12345678
+              gender:
+                type: string
+                example: male
               birthday:
                 type: string
                 example: 1980/12/10
         404:
           description: Cannot request the endpoint with empty parameter or client not found.
+        500:
+          description: Intern error in api.
+          
+  '/clients':
+    get:
+      summary: Get a list of clients.
+      description:  Get a list of clients.
+      produces:
+      - application/json
+      consumes:
+      - application/json
+      responses:
+        200:
+          description: Client found.
+          schema:
+            type: array
+            items:
+              type: string
+              example: [{
+                id: 1,
+                name: "Marcelo Silva",
+                documentation: 12345678,
+                gender: "male",
+                birthday: 1980/12/10,
+              },{
+                id: 2,
+                name: "Patrícia Silva",
+                documentation: 102030,
+                gender: "female",
+                birthday: "1980/05/09"
+              }]
         500:
           description: Intern error in api.
    
