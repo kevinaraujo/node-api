@@ -6,14 +6,14 @@ class Tables {
     }
 
     createClientTable() {
-        const sql = `CREATE TABLE clients (
+        const sql = `CREATE TABLE IF NOT EXISTS clients (
             id int NOT NULL AUTO_INCREMENT,
             name varchar(50) NOT NULL,
             email varchar(50) NOT NULL,
             documentation int NOT NULL,
             birthday date NOT NULL,
             gender varchar(50) NOT NULL,
-            created_at DATETIME NOT NULL,
+            created_at DATETIME NULL,
             PRIMARY KEY(id))`
 
         this.connection.query(sql, (err) => {

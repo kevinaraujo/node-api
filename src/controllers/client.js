@@ -1,6 +1,13 @@
-//const ClientModel = require('../models/Client')
+const ClientModel = require('../models/Client')
 
 module.exports = app => {
+
+    app.put('/client', (req, res) => {
+
+        ClientModel.add(req.body)
+        
+        res.status(201).json({ message: 'success' })
+    })
 
     app.get('/clients', (req, res) => {
 

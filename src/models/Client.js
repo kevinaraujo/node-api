@@ -1,26 +1,17 @@
-/*const mongoose = require('../config/connection');
+const connection = require('../config/connection')
 
-const Schema = mongoose.Schema;
+class ClientModel {
+  add(data) {
+      const sql = `INSERT INTO clients SET ?`
 
-let ClientSchema = new Schema(
-  {
-    name: {
-      type: String
-    },
-    documentation: {
-      type: String
-    },
-    gender: {
-      type: String
-    },
-    birthday: {
-      type: String
-    }
-  },
-  { collection: "Clients" }
-);
+      connection.query(sql, data, (err, response) => {
+          if (err) {
+            console.log(err)
+          } else {
+            console.log(response) 
+          }
+      })
+  }    
+}
 
-const Model = mongoose.model
-const ClientModel = Model("Clients", ClientSchema)
-
-module.exports = ClientModel*/
+module.exports = new ClientModel
