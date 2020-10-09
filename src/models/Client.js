@@ -1,4 +1,4 @@
-const mongoose = require('../config/connection');
+/*const mongoose = require('../config/connection');
 
 const Schema = mongoose.Schema;
 
@@ -23,4 +23,4 @@ let ClientSchema = new Schema(
 const Model = mongoose.model
 const ClientModel = Model("Clients", ClientSchema)
 
-module.exports = ClientModel
+module.exports = ClientModel*/

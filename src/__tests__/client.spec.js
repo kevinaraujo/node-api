@@ -1,17 +1,9 @@
 const supertest = require('supertest')
 const customExpress = require('../config/customExpress')
-const ClientModel = require('../models/Client')
 
 var app = customExpress()
 
 describe('Tests client endpoints.', () => {
-
-    const client = new ClientModel({
-        name: 'Marcelo Silva',
-        documentation: 12345678,
-        gender: 'male',
-        birthday: '1970/12/10'
-    })
 
     it('Tests a client found by its id.', async () => {
 

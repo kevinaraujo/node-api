@@ -1,4 +1,4 @@
-const ClientModel = require('../models/Client')
+//const ClientModel = require('../models/Client')
 
 module.exports = app => {
 

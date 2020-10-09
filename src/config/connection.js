@@ -1,12 +1,11 @@
-const mongoose = require('mongoose');
-   
-const uri = 'mongodb://mongo:27017/node_api';
+const mysql = require('mysql');
+  
+const connection = mysql.createConnection({
+    host: 'localhost',
+    port: 3307,
+    user: 'root',
+    password: 'root',
+    database: 'node-api'
+});
 
-const options = { useUnifiedTopology: true, useNewUrlParser: true }
-
-mongoose.connect(uri, options).then(
-  () => { console.log('Connected.') },
-  err => { console.log('Error to connect to db.') }
-);
-
-module.exports = mongoose;
+module.exports = connection;
