@@ -11,9 +11,9 @@ class Tables {
             name varchar(50) NOT NULL,
             email varchar(50) NOT NULL,
             documentation int NOT NULL,
-            birthday date NOT NULL,
+            birthday datetime NOT NULL,
             gender varchar(50) NOT NULL,
-            created_at DATETIME NULL,
+            created_at datetime NULL,
             PRIMARY KEY(id))`
 
         this.connection.query(sql, (err) => {
