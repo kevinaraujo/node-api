@@ -5,6 +5,55 @@ var app = customExpress()
 
 describe('Tests client endpoints.', () => {
 
+    it('Tests a client successfully', async () => {
+      
+        const data = {
+            name: "Giovanna Sales",
+            email: "giovanna.teste@gmail.com",
+            documentation: "12345678",
+            gender: "female",
+            birthday: "09/05/1990"
+        }
+
+        const res = await supertest(app)
+        .put('/client')
+        .send(data)
+
+        expect(res.status).toBe(201)
+    })
+
+    it('Tests a client insert with short name returns error', async () => {
+        const data = {
+            name: "Joao",
+            email: "giovanna.teste@gmail.com",
+            documentation: "12345678",
+            gender: "female",
+            birthday: "09/05/1990"
+        }
+
+        const res = await supertest(app)
+        .put('/client')
+        .send(data)
+
+        expect(res.status).toBe(400)
+    })
+
+    it('Tests a client insert with invalid birthday date returns error', async () => {1970
+        const data = {
+            name: "Joao Silva",
+            email: "giovanna.teste@gmail.com",
+            documentation: "12345678",
+            gender: "female",
+            birthday: "test"
+        }
+
+        const res = await supertest(app)
+        .put('/client')
+        .send(data)
+        
+        expect(res.status).toBe(400)
+    })
+
     it('Tests a client found by its id.', async () => {
 
         const res = await supertest(app).get(`/client/1`)
@@ -49,10 +98,9 @@ describe('Tests client endpoints.', () => {
         })
     })
 
-    it('Tests a list of clients', async() => {
+    it('Tests a list of clients', async () => {
         const res = await supertest(app).get('/clients')
 
-        
         expect(res.status).toBe(200)
         expect(res.body.length).toEqual(3)
 

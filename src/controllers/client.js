@@ -3,10 +3,7 @@ const ClientModel = require('../models/Client')
 module.exports = app => {
 
     app.put('/client', (req, res) => {
-
-        ClientModel.add(req.body)
-        
-        res.status(201).json({ message: 'success' })
+        ClientModel.add(req.body, res)
     })
 
     app.get('/clients', (req, res) => {
