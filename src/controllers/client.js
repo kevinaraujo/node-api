@@ -35,19 +35,9 @@ module.exports = app => {
 
     app.get('/client/:id', (req, res) => {
 
-        if (req.params.id != 1) {
-            res.status(404).json({
-                error: 'Client not found.'
-            })
-        }
+        const id = parseInt(req.params.id)
 
-        res.json({
-            id: 1,
-            name: 'Marcelo Silva',
-            documentation: 12345678,
-            gender: 'male',
-            birthday: '1970/12/10'
-        })
+        ClientModel.getById(id, res)
     })
 
     app.get('/client/get_by_documentation/:documentation', (req, res) => {

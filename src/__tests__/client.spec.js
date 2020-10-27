@@ -2,17 +2,18 @@ const supertest = require('supertest')
 const customExpress = require('../config/customExpress')
 
 var app = customExpress()
+var lastClientId = null
 
 describe('Tests client endpoints.', () => {
 
-    it('Tests a client successfully', async () => {
+    it('Tests a client insert route successfully', async () => {
       
         const data = {
             name: "Giovanna Sales",
             email: "giovanna.teste@gmail.com",
             documentation: "12345678",
             gender: "female",
-            birthday: "09/05/1990"
+            birthday: "1994-05-09"
         }
 
         const res = await supertest(app)
@@ -20,9 +21,11 @@ describe('Tests client endpoints.', () => {
         .send(data)
 
         expect(res.status).toBe(201)
+
+        lastClientId = res.body.insertId
     })
 
-    it('Tests a client insert with short name returns error', async () => {
+    it('Tests a client insert route with short name returns error', async () => {
         const data = {
             name: "Joao",
             email: "giovanna.teste@gmail.com",
@@ -34,11 +37,11 @@ describe('Tests client endpoints.', () => {
         const res = await supertest(app)
         .put('/client')
         .send(data)
-
+        
         expect(res.status).toBe(400)
     })
 
-    it('Tests a client insert with invalid birthday date returns error', async () => {1970
+    it('Tests a client insert route with invalid birthday date returns error', async () => {1970
         const data = {
             name: "Joao Silva",
             email: "giovanna.teste@gmail.com",
@@ -54,19 +57,19 @@ describe('Tests client endpoints.', () => {
         expect(res.status).toBe(400)
     })
 
-    it('Tests a client found by its id.', async () => {
+    it('Tests a client get by id route successfully.', async () => {
 
-        const res = await supertest(app).get(`/client/1`)
+        const res = await supertest(app).get(`/client/${lastClientId}`)
 
         expect(res.status).toBe(200)
-        expect(res.body.name).toBe('Marcelo Silva')
+        expect(res.body.name).toBe('Giovanna Sales')
         expect(res.body.documentation).toBe(12345678)
-        expect(res.body.gender).toBe('male')
-        expect(res.body.birthday).toBe('1970/12/10')
+        expect(res.body.gender).toBe('female')
+        expect(res.body.birthday).toBe('09/05/1994')
     })
 
-    it('Tests a client not found by its id.', async () => {
-        const res = await supertest(app).get('/client/20')
+    it('Tests a client get by id route not found.', async () => {
+        const res = await supertest(app).get(`/client/9999999`)
 
         expect(res.status).toBe(404)
         expect(res.body).toEqual({
