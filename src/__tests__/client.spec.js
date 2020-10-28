@@ -81,7 +81,7 @@ describe('Tests client endpoints.', () => {
         expect(res.body.affectedRows).toBe(1)
     })
 
-    it('Testas a cliente update with invalid data return error', async () => {
+    it('Tests a cliente update with invalid data return error', async () => {
         const data = {
             parent: "Marcelo Jr"
         }
@@ -92,6 +92,20 @@ describe('Tests client endpoints.', () => {
 
         expect(res.status).toBe(400)
         expect(res.body.code).toBe('ER_BAD_FIELD_ERROR')
+    })
+
+    it('Tests a client delete route successfully.', async () => {
+        const res = await supertest(app).delete(`/client/${lastClientId}`)
+
+        expect(res.status).toBe(200)
+        expect(res.body.affectedRows).toBe(1)
+    })
+
+    it('Tests a client delete route with inexistent id returns error.', async () => {
+        const res = await supertest(app).delete(`/client/99999`)
+
+        expect(res.status).toBe(200)
+        expect(res.body.affectedRows).toBe(0)
     })
 
     it('Tests a client get by id route not found.', async () => {

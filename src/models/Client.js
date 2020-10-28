@@ -82,6 +82,19 @@ class ClientModel {
       res.status(200).json(response)
     })
   }
+
+  delete(id, res) {
+    const sql = "DELETE FROM clients WHERE id = ?"
+
+    connection.query(sql, id, (err, response) => {
+      if (err) {
+        res.status(400).json(err)
+        return
+      }
+
+      res.status(200).json(response)
+    })
+  }
 }
 
 module.exports = new ClientModel

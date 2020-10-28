@@ -8,12 +8,21 @@
 	},
 	"item": [
 		{
-			"name": "Get client",
+			"name": "Insert client",
 			"request": {
-				"url": "http://localhost:3000/client/1",
-				"method": "GET",
-				"header": [],
-				"body": {},
+				"url": "http://localhost:3000/client",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Joao r\",\n    \"email\": \"giovanna.teste@gmail.com\",\n    \"documentation\": \"12345678\",\n    \"gender\": \"female\",\n    \"birthday\": \"09-05-1994\"\n}"
+				},
 				"description": ""
 			},
 			"response": []
@@ -45,6 +54,48 @@
 			"request": {
 				"url": "http://localhost:3000/clients",
 				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get client by id",
+			"request": {
+				"url": "http://localhost:3000/client/46",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Update client",
+			"request": {
+				"url": "http://localhost:3000/client/46",
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"sss\" : \"Lucazinho\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Delete client",
+			"request": {
+				"url": "http://localhost:3000/client/469",
+				"method": "DELETE",
 				"header": [],
 				"body": {},
 				"description": ""
