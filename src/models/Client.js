@@ -4,7 +4,7 @@ const moment = require('moment')
 class ClientModel {
   add(data, res) {
 
-      const dtBirthday = moment(data.birthday)
+      const dtBirthday = moment(data.birthday, 'DD/MM/YYYY')
       const created_at = new Date()
       
       const birthday = dtBirthday.format('YYYY-MM-DD') 
@@ -67,6 +67,19 @@ class ClientModel {
       }
 
       res.status(200).json(client)
+    })
+  }
+
+  update(id, data, res) {
+    const sql = "UPDATE clients SET ? WHERE id=?"
+
+    connection.query(sql, [data, id], (err, response) => {
+      if (err) {
+        res.status(400).json(err)
+        return
+      }
+      
+      res.status(200).json(response)
     })
   }
 }

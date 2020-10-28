@@ -40,6 +40,12 @@ module.exports = app => {
         ClientModel.getById(id, res)
     })
 
+    app.patch('/client/:id', (req, res) => {
+        const id = parseInt(req.params.id)
+
+        ClientModel.update(id, req.body, res)
+    })
+
     app.get('/client/get_by_documentation/:documentation', (req, res) => {
         
         if (req.params.documentation != 12345678) {

@@ -13,7 +13,7 @@ describe('Tests client endpoints.', () => {
             email: "giovanna.teste@gmail.com",
             documentation: "12345678",
             gender: "female",
-            birthday: "1994-05-09"
+            birthday: "09/05/1994"
         }
 
         const res = await supertest(app)
@@ -31,7 +31,7 @@ describe('Tests client endpoints.', () => {
             email: "giovanna.teste@gmail.com",
             documentation: "12345678",
             gender: "female",
-            birthday: "09/05/1990"
+            birthday: "09/05/1994"
         }
 
         const res = await supertest(app)
@@ -66,6 +66,32 @@ describe('Tests client endpoints.', () => {
         expect(res.body.documentation).toBe(12345678)
         expect(res.body.gender).toBe('female')
         expect(res.body.birthday).toBe('09/05/1994')
+    })
+
+    it('Tests a client update route successfully', async () => {
+        const data = {
+            name: "Lucas Silva"
+        }
+
+        const res = await supertest(app)
+        .patch(`/client/${lastClientId}`)
+        .send(data)
+
+        expect(res.status).toBe(200)
+        expect(res.body.affectedRows).toBe(1)
+    })
+
+    it('Testas a cliente update with invalid data return error', async () => {
+        const data = {
+            parent: "Marcelo Jr"
+        }
+
+        const res = await supertest(app)
+        .patch(`/client/${lastClientId}`)
+        .send(data)
+
+        expect(res.status).toBe(400)
+        expect(res.body.code).toBe('ER_BAD_FIELD_ERROR')
     })
 
     it('Tests a client get by id route not found.', async () => {
